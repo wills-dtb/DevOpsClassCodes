@@ -18,6 +18,7 @@ pipeline {
             }
         }
         stage('codeReview') {
+            agent any
             steps {
                 sh 'mvn pmd:pmd'
             }
@@ -28,11 +29,13 @@ pipeline {
             }
         }
         stage('unitTest') {
+            agent any
             steps {
                 sh 'mvn test'
             }
         }
         stage('metricCheck') {
+            agent any
             steps {
                 sh 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
             }
@@ -43,6 +46,7 @@ pipeline {
             }
         }
         stage('package') {
+            agent any
             steps {
                 sh 'mvn package'
             }
