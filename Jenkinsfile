@@ -3,14 +3,16 @@ pipeline {
         jdk 'myjava'
         maven 'mymaven'
     }
-    agent any
+    agent none
     stages {
         stage('checkout') {
+            agent {label 'mac-agent'}
             steps {
                 git 'https://github.com/wills-dtb/DevOpsClassCodes.git' 
             }
         }
-        stage('compilez') {
+        stage('compilez') {  
+            agent {label 'mac-agent'}
             steps {
                 sh 'mvn compile' 
             }
